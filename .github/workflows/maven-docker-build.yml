@@ -14,10 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: argeualcantara/actions/maven-build@main
-      id: maven-build
+    - name: Set up JDK version
+      uses: actions/setup-java@v2
+      id: setup-java
       with:
         java-version: "11"
+        distribution: "adopt"
+    - uses: argeualcantara/actions/maven-build@main
+      id: maven-build
     - uses: argeualcantara/actions/semantic-version@main
       id: semantic-version
       with:
