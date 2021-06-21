@@ -18,6 +18,8 @@ jobs:
     - uses: actions/checkout@v2
     - uses: argeualcantara/actions/maven-build@main
       id: maven-build
+      with:
+        java-version: "11"
     - uses: argeualcantara/actions/semantic-version@main
       id: semantic-version
       with:
