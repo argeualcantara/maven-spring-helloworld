@@ -15,7 +15,7 @@ pipeline {
         }
     }
     post {
-        always {
+        success {
             archiveArtifacts artifacts: 'target/**/*.jar', fingerprint: true
         }
     }
