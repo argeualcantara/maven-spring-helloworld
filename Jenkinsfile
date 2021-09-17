@@ -4,14 +4,13 @@ pipeline {
         stage('Back-end') {
             steps {
                 script {    
-                    docker.image('maven:3.8.1-adoptopenjdk-11').inside('-v ${WORKSPACE}:/work -v /var/jenkins_home/.m2:/root/.m2') {
+                    docker.image('maven:3.8.1-adoptopenjdk-11').inside('-v /var/jenkins_home/.m2:/root/.m2') {
                         sh """
-                            cd /work
+                            ls
                             mvn clean package
                         """
                     }
                 }
-                //docker run -u 1000:1000 --rm -it --entrypoint sh maven:3.8.1-adoptopenjdk-11 
             }
         }
     }
