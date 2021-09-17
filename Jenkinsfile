@@ -14,11 +14,10 @@ pipeline {
                 
             }
         }
-
-        post {
+    }
+    post {
         always {
             archiveArtifacts artifacts: '${WORKSPACE}/target/**/*.jar', fingerprint: true
         }
-    }
     }
 }
