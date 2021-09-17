@@ -7,12 +7,18 @@ pipeline {
                     docker.image('maven:3.8.1-adoptopenjdk-11').inside('-v ${WORKSPACE}:/work') {
                         sh """
                             cd /work
-                            mvn --version
+                            mvn clean package
                         """
                     }
                 }
                 
             }
         }
+
+        post {
+        always {
+            archiveArtifacts artifacts: '${WORKSPACE}/target/**/*.jar', fingerprint: true
+        }
+    }
     }
 }
