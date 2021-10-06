@@ -15,10 +15,17 @@ pipeline {
                 ])
             }
         }
-        stage('Back-end') {
+        stage('Release') {
             steps {
-                script {    
-                    sh "ls -ilha"
+                script {
+                    withCredentials([string(credentialsId: 'githubArgeu', variable: 'TOKEN')]){
+                        sh """
+                            set +x
+                            chmod 755 ./release.sh
+                            ./release.sh 1.0.${env.BUILD_NUMBER} ${TOKEN}
+                            set -x
+                        """
+                    }
                 }
             }
         }
