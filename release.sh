@@ -12,7 +12,7 @@ set -e
 # Get Commit ID of master
 commit=$(curl -s -H "Authorization:token ${GIT_TOKEN}" https://api.github.com/repos/argeualcantara/maven-spring-helloworld/commits/master)
 COMMIT_ID=$(echo "$commit" | ./jq '.sha' | sed 's/"//g')
-DATE=
+echo "Commit id is $COMMID_ID"
 # Get the full message associated with this tag
 message=$(echo "$commit" | ./jq '.commit.message'  | sed 's/"//g')
 
