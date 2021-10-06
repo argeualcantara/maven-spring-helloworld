@@ -18,7 +18,7 @@ pipeline {
         stage('Release') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'githubArgeu', variable: 'TOKEN')]){
+                    withCredentials(usernamePassword(credentialsId: 'githubArgeu', passwordVariable: 'TOKEN', usernameVariable: 'USER')){
                         sh """
                             set +x
                             chmod 755 ./release.sh
