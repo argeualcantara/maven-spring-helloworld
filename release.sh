@@ -23,13 +23,15 @@ echo "$tag_sha"
 tag_ref=$(curl -s -X POST -H "Authorization:token ${GIT_TOKEN}" --data "{\"ref\": \"refs/tags/${VERSION}\", \"sha\": \"${tag_sha}\" }" https://api.github.com/repos/argeualcantara/maven-spring-helloworld/git/refs)
 echo "Finished tag"
 
+echo "$tag_ref"
+
 # Get the title and the description as separated variables
 name="${VERSION}"
 echo "$name" 
 
 # Create a release
 echo "Creating RELEASE"
-release=$(curl -X POST -s -H "Authorization:token ${GIT_TOKEN}" --data "{\"tag_name\": \"${VERSION}\", \"target_commitish\": \"master\", \"name\": \"$name\", \"body\": \"$message\", \"draft\": false, \"prerelease\": false}" https://api.github.com/repos/argeualcantara/maven-spring-helloworld/releases)
+release=$(curl -X POST -s -H "Authorization:token ${GIT_TOKEN}" --data "{\"tag_name\": \"${VERSION}\", \"target_commitish\": \"main\", \"name\": \"$name\", \"body\": \"$message\", \"draft\": false, \"prerelease\": false}" https://api.github.com/repos/argeualcantara/maven-spring-helloworld/releases)
 echo "$release" 
 # Extract the id of the release from the creation response
 id=$(echo "$release" | sed -n -e 's/"id":\ \([0-9]\+\),/\1/p' | head -n 1 | sed 's/[[:blank:]]//g')
