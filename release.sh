@@ -36,5 +36,5 @@ id=$(echo "$release" | sed -n -e 's/"id":\ \([0-9]\+\),/\1/p' | head -n 1 | sed 
 
 # Upload the artifact
 echo "Uploading artifacts"
-curl -X POST -s -o /dev/null -H "Authorization:token ${GIT_TOKEN}" -H "Content-Type:application/octet-stream" --data-binary @Dockerfile https://uploads.github.com/repos/argeualcantara/maven-spring-helloworld/releases/$id/assets?name=Dockerfile
+curl -X POST -s -o /dev/null -H "Authorization:token ${GIT_TOKEN}" -H "Content-Type:application/octet-stream" --data-binary @./Dockerfile https://uploads.github.com/repos/argeualcantara/maven-spring-helloworld/releases/$id/assets?name=Dockerfile
 echo "Finish release.sh"
