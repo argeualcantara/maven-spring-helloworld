@@ -15,8 +15,7 @@ pipeline {
                 sh "echo 'branch is $BRANCH'"
                 checkout([
                     $class: 'GitSCM', branches: [[name: '*/main']],
-                    extensions: [[$class: 'CloneOption', timeout: 20], [$class: 'CloneOption', noTags: false],
-                                 [$class: 'CloneOption', shallow: false], [$class: 'CloneOption', depth: 1]],
+                    extensions: [[$class: 'CloneOption', timeout: 20, noTags: true, shallow: true, depth: 1]],
                     userRemoteConfigs: [[url: 'https://github.com/argeualcantara/maven-spring-helloworld.git',credentialsId:'githubArgeu']]
                 ])
             }
