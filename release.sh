@@ -1,6 +1,7 @@
 #! /bin/bash
 VERSION="$1"
 GIT_TOKEN="$2"
+DATE=$(date +%Y-%m-%dT%H:%M:%SZ)
 
 #Downloading jq to manipulate response
 curl -s -L -o jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux32
@@ -11,7 +12,7 @@ set -e
 # Get Commit ID of master
 commit=$(curl -s -H "Authorization:token ${GIT_TOKEN}" https://api.github.com/repos/argeualcantara/maven-spring-helloworld/commits/master)
 COMMIT_ID=$(echo "$commit" | ./jq '.sha' | sed 's/"//g')
-
+DATE=
 # Get the full message associated with this tag
 message=$(echo "$commit" | ./jq '.commit.message'  | sed 's/"//g')
 
