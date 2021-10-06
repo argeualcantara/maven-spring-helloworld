@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        BRANCH=${BRANCH_NAME}
+        BRANCH="${BRANCH_NAME}"
     }
 
     stages {
