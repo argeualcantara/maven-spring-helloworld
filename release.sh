@@ -1,7 +1,7 @@
 #! /bin/bash
 VERSION="$1"
 GIT_TOKEN="$2"
-DATE=$(date +'%Y-%m-%dT%H:%M:%S%z')
+DATE=$(date +'%Y-%m-%dT%H:%M:%S%:z')
 
 #Downloading jq to manipulate response
 curl -s -L -o jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux32
