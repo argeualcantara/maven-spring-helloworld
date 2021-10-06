@@ -10,9 +10,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 script{
-                    BRANCH="[[name: '*/${env.BRANCH_NAME}']]"
+                    def branch="[[name: '*/${env.BRANCH_NAME}']]"
                     checkout([
-                        $class: 'GitSCM', branches: $BRANCH,
+                        $class: 'GitSCM', branches: $branch,
                         extensions: [[$class: 'CloneOption', timeout: 20, noTags: true, shallow: true, depth: 1]],
                         userRemoteConfigs: [[url: 'https://github.com/argeualcantara/maven-spring-helloworld.git',credentialsId:'githubArgeu']]
                     ])
