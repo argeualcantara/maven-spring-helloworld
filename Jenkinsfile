@@ -14,8 +14,8 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM', branches: [[name: '*/${BRANCH}']],
-                    extensions: [[$class: 'CloneOption', timeout: 20], [$class: 'CloneOption', noTags: true],
-                                 [$class: 'CloneOption', shallow: true], [$class: 'CloneOption', depth: 1]],
+                    extensions: [[$class: 'CloneOption', timeout: 20], [$class: 'CloneOption', noTags: false],
+                                 [$class: 'CloneOption', shallow: false], [$class: 'CloneOption', depth: 1]],
                     userRemoteConfigs: [[url: 'https://github.com/argeualcantara/maven-spring-helloworld.git',credentialsId:'githubArgeu']]
                 ])
             }
